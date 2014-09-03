@@ -21,7 +21,7 @@ class EchoBot(object):
         self.reply(tweet)
     self.save_state()
 
-  def reply(self):
+  def reply(self, tweet):
     self.twitter.update_status(status="%s %s" % (clean_author(tweet), remove_echo(tweet.text)))
     self.tweet_store[tweet.id] = True
 
