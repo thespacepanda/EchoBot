@@ -10,7 +10,6 @@ class EchoBot(object):
       auth = tweepy.OAuthHandler(config.api_key, config.api_secret)
       auth.set_access_token(config.token_key, config.token_secret)
       return tweepy.API(auth)
-
     self.tweet_store = anydbm.open("tweet_store", "c")
     self.twitter = auth()
     self.name = config.BOT
@@ -22,12 +21,8 @@ class EchoBot(object):
     self.save_state()
 
   def reply(self, tweet):
-    self.twitter.update_status(status="%s %s" % (clean_author(tweet), remove_echo(tweet.text)))
-    self.tweet_store[tweet.id] = True
-
     def clean_author(tweet):
       return "@" + tweet.author.screen_name
-
     def remove_echo(text):
       xs = text.split()
       if self.name in xs:
@@ -35,7 +30,9 @@ class EchoBot(object):
         return remove_echo(" ".join(xs))
       else:
         return text
-
+    self.twitter.update_status(status="%s %s" % (clean_author(tweet), remove_echo(tweet.text)))
+    self.tweet_store[tweet.id] = True
+        
   def save_state(self):
     self.tweet_store.close()
 
