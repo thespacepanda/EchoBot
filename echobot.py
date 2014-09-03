@@ -16,7 +16,7 @@ class EchoBot(object):
     
   def respond(self):
     for tweet in self.twitter.search(q=self.name):
-      if tweet.id not in self.tweet_store.keys():
+      if str(tweet.id) not in self.tweet_store.keys():
         self.reply(tweet)
     self.save_state()
 
@@ -31,7 +31,7 @@ class EchoBot(object):
       else:
         return text
     self.twitter.update_status(status="%s %s" % (clean_author(tweet), remove_echo(tweet.text)))
-    self.tweet_store[tweet.id] = ""
+    self.tweet_store[str(tweet.id)] = ""
         
   def save_state(self):
     self.tweet_store.close()
