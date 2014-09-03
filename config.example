@@ -1,5 +1,10 @@
 # This is the configuration file where you store your
 # API key and secret. Keep it secret, keep it safe.
 
-auth_key = ""
-auth_secret = ""
+api_key = ""
+api_secret = ""
+
+token_key = ""
+token_secret = ""
+
+BOT = ""
