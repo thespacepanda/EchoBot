@@ -55,3 +55,7 @@ docs/_build/
 # Emacs
 .#*
 *~
+\#*
+
+# Sensitive config
+config.py
