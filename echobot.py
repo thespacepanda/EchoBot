@@ -1,6 +1,5 @@
 import cPickle as pickle
 import os.path
-import time.sleep
 import tweepy
 
 from config import *
