@@ -47,6 +47,7 @@ def reply(api, responded_to, tweet):
 def main():
   responded_to = load_set()
   api = auth()
-  while True:
-    respond(api, responded_to, search(api))
-    time.sleep(5)
+  respond(api, responded_to, search(api))
+
+if __name__ == "__main__":
+  main()  
