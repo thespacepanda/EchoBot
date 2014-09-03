@@ -40,7 +40,7 @@ class EchoBot(object):
     self.tweet_store.close()
 
 def main():
-  echobot = EchoBot(auth())
+  echobot = EchoBot()
   echobot.respond()
 
 if __name__ == "__main__":
