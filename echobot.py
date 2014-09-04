@@ -17,16 +17,10 @@ class EchoBot(object):
     self.close_db()
 
   def reply(self, tweet):
-    def clean_author(tweet):
-      return "@" + tweet.author.screen_name
+    clean_author = "@" + tweet.author.screen_name
     def remove_echo(text):
-      xs = text.split()
-      if self.name in xs:
-        xs.remove(self.name)
-        return remove_echo(" ".join(xs))
-      else:
-        return text
-    self.twitter.update_status(status="%s %s" % (clean_author(tweet), remove_echo(tweet.text)))
+      return " ".join([x for x in text.split() if x != self.name])
+    self.twitter.update_status(status="%s %s" % (clean_author, remove_echo(tweet.text)))
     self.tweet_store[str(tweet.id)] = ""
     self.save_state()
         
